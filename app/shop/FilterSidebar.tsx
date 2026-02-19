@@ -5,7 +5,6 @@ const FilterSidebar = async () => {
     method: 'GET',
   });
   const categories: ProductCategory[] = await res.json();
-  console.log(categories);
 
   return (
     <aside className="w-80 space-y-8">

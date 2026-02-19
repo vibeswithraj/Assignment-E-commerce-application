@@ -1,7 +1,7 @@
 import Layout from '@/components/layout/Layout';
 import ProductCard from '@/components/ui/ProductCard';
 import { Product, ProductsRes } from '@/types/Product';
-import FilterSidebar from './FilterSidebar';
+import FilterSidebar from '../FilterSidebar';
 
 const data1: ProductsRes = {
   limit: 0,

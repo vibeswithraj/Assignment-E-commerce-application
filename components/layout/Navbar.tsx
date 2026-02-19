@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <nav className="w-screen flex items-center justify-between px-8 py-2 border-b border-slate-800">
       <div className="space-x-16 flex items-center">
-        <span className="block text-2xl font-semibold uppercase">AURA</span>
+        <span className="block text-2xl font-semibold uppercase">LUXE</span>
         <ul className="space-x-8 hidden md:block">
           {navLinks.map((link: NavLinks) => (
             <Link

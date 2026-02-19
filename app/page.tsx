@@ -1,65 +1,54 @@
-import Image from "next/image";
+import Layout from '@/components/layout/Layout';
+import Image from 'next/image';
+import { Play } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <Layout>
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#0a0f10]">
+        {/* <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[160px]"></div>
+        </div> */}
+        <div className="max-w-[1440px] mx-auto px-8 w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
+          <div className="flex flex-col gap-8 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+                New Collection Out Now
+              </span>
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black font-manrope leading-[0.95] tracking-tight">
+              The New Standard of{' '}
+              <span className="text-primary italic">Excellence.</span>
+            </h1>
+            <p className="text-xl text-slate-400 font-light max-w-lg leading-relaxed">
+              Precision-engineered acoustics meet minimalist luxury. Experience
+              sound as it was intended to be heard.
+            </p>
+            <div className="flex items-center gap-4 pt-4">
+              <button className="bg-primary hover:bg-primary/90 font-extrabold px-10 py-5 rounded-lg text-lg transition-transform active:scale-95 cursor-pointer">
+                Shop The Collection
+              </button>
+              <button className="group flex items-center gap-2 px-6 py-5 rounded-lg font-bold text-slate-300 hover:text-white transition-colors cursor-pointer">
+                Watch Film{' '}
+                <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
+                  <Play />
+                </span>
+              </button>
+            </div>
+          </div>
+          <div className="relative">
+            {/* <div className="absolute -inset-4 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div> */}
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              width={400}
+              height={400}
+              className="w-full h-auto drop-shadow-2xl"
+              alt="High-end professional over-ear silver headphones"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyBpCm4UfpAFZPpopaT7ESAJdYcYKf-8mmPuciGUJP_k0qekpME_zknCSsz6ki2yXDjDuw90SEMmxrhkfr2aLOUaWlptPneJgjPNQzNDiUfrhoGKgVQ4FOy33ebht_Sy1AJnyK7D60xgqY1rtcWzwA7qG0S5xizvDR6YjERiE61YirIXhruegrsq3F0GVEGrcThxfj7SpUmOcd-y9db-QVRVoDQocOt1aEvOCqULUVuycP4Gfuqw0OVZgMC_py8myzZ2fsGVBDd10"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </Layout>
   );
 }

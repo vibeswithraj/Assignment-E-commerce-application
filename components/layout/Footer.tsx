@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="px-10 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           <div className="flex flex-col gap-6">
-            <h1 className="text-2xl font-semibold uppercase">AURA</h1>
+            <h1 className="text-2xl font-semibold uppercase">LUXE</h1>
             <p className="text-zinc-400 leading-relaxed max-w-xs">
               Elevating daily experiences through premium design and
               engineering. Join the elite community of visionaries.
@@ -102,7 +102,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-zinc-800 pt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-500 text-xs font-medium">
-          <p>© 2024 AURA Global Enterprise. All rights reserved.</p>
+          <p>© 2024 LUXE Global Enterprise. All rights reserved.</p>
           <div className="flex gap-8">
             <Link className="hover:text-zinc-300" href="#">
               Privacy Policy
