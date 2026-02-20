@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Layout from '@/components/layout/Layout';
 import { fetchProductById, fetchProducts } from '@/lib/api';
 import { Metadata } from 'next';
@@ -25,6 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Product Not Found' };
   }
 }
+
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   try {
