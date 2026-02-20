@@ -56,7 +56,7 @@ const page = async ({ searchParams }: ProductsPageProps) => {
     <Layout>
       <div className="w-7xl h-full mx-auto py-8 lg:py-12">
         <div className="mb-8">
-          <h1 className="font-display text-4xl lg:text-5xl text-ink font-light mb-2">
+          <h1 className="font-manrope text-4xl lg:text-5xl font-light mb-2">
             {search
               ? `Results for "${search}"`
               : category

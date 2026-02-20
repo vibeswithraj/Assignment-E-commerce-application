@@ -85,6 +85,9 @@ const page = () => {
               Sign up
             </Link>
           </p>
+          <span className="text-zinc-500">
+            <strong>Demo credentials:</strong> emilys / emilyspass
+          </span>
         </div>
       </div>
     </div>

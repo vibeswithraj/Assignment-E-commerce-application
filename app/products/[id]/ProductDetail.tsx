@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
 import { addToCart, updateQuantity, selectCartItems } from '@/store/cartSlice';
-import type { Product } from '@/types';
+import type { CartItem, Product } from '@/types';
 import { formatPrice, formatDiscount, cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
@@ -28,7 +28,9 @@ interface ProductDetailProps {
 export default function ProductDetail({ product }: ProductDetailProps) {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
-  const cartItem = cartItems.find((item) => item.product.id === product.id);
+  const cartItem = cartItems.find(
+    (item: CartItem) => item.product.id === product.id,
+  );
   const isInCart = !!cartItem;
 
   const [selectedImage, setSelectedImage] = useState(0);
@@ -59,7 +61,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
   return (
     <div className="page-container w-full px-16 py-8 lg:py-12 animate-fade-in">
-      {/* Breadcrumb */}
       <nav className="flex items-center gap-2 mb-8 text-sm font-body text-gray-400">
         <Link
           href="/products"
@@ -80,7 +81,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-        {/* Images */}
         <div className="space-y-3">
           <div className="relative aspect-square bg-gray-50 overflow-hidden">
             <Image
@@ -118,7 +118,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             )}
           </div>
 
-          {/* Thumbnails */}
           {product.images.length > 1 && (
             <div className="flex gap-2 overflow-x-auto pb-1">
               {product.images.map((img, idx) => (
@@ -147,7 +146,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           )}
         </div>
 
-        {/* Product Info */}
         <div className="space-y-6">
           <div>
             <p className="text-xs text-gray-400 font-body tracking-widest uppercase mb-2">
@@ -157,7 +155,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               {product.title}
             </h1>
 
-            {/* Rating */}
             <div className="flex items-center gap-3">
               <div className="flex items-center">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -178,7 +175,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
           </div>
 
-          {/* Price */}
           <div className="flex items-baseline gap-3 pb-6 border-b border-gray-100">
             <span className="font-display text-4xl text-ink font-semibold">
               {formatPrice(discountedPrice)}
@@ -195,12 +191,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             )}
           </div>
 
-          {/* Description */}
           <p className="font-body text-gray-600 leading-relaxed text-sm">
             {product.description}
           </p>
 
-          {/* Stock Status */}
           <div className="flex items-center gap-2">
             <div
               className={cn(
@@ -221,7 +215,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </span>
           </div>
 
-          {/* Quantity & Add to Cart */}
           {product.stock > 0 && (
             <div className="flex items-center gap-4">
               <div className="flex items-center border border-gray-200">
@@ -275,7 +268,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </Link>
           )}
 
-          {/* Product Details */}
           <div className="grid grid-cols-2 gap-3 pt-2">
             {[
               { icon: Truck, label: product.shippingInformation },
@@ -295,44 +287,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             ))}
           </div>
 
-          {/* SKU */}
           <p className="text-xs text-gray-400 font-mono">SKU: {product.sku}</p>
         </div>
       </div>
-
-      {/* Reviews Section */}
-      {product.reviews.length > 0 && (
-        <div className="mt-16 pt-12 border-t border-gray-100">
-          <h2 className="font-display text-2xl text-ink font-light mb-6">
-            Customer Reviews
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {product.reviews.map((review, idx) => (
-              <div key={idx} className="bg-white border border-gray-100 p-5">
-                <div className="flex items-center gap-1 mb-2">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className={cn(
-                        'w-3 h-3',
-                        i < review.rating
-                          ? 'fill-brand-400 text-brand-400'
-                          : 'fill-gray-200 text-gray-200',
-                      )}
-                    />
-                  ))}
-                </div>
-                <p className="font-body text-sm text-gray-600 leading-relaxed mb-3">
-                  &ldquo;{review.comment}&rdquo;
-                </p>
-                <p className="font-body text-xs text-gray-400">
-                  — {review.reviewerName}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

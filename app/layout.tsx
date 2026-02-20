@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Manrope } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'react-hot-toast';
+import { StoreProvider } from '@/store/StoreProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,33 +34,35 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${manrope.className} antialiased`}
       >
-        {children}
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 3000,
-            style: {
-              background: '#0f0a14',
-              color: '#faf7ff',
-              fontFamily: 'var(--font-body)',
-              borderRadius: '0',
-              padding: '12px 16px',
-              fontSize: '14px',
-            },
-            success: {
-              iconTheme: {
-                primary: '#13daec',
-                secondary: '#faf7ff',
+        <StoreProvider>
+          {children}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: '#0f0a14',
+                color: '#faf7ff',
+                fontFamily: 'var(--font-body)',
+                borderRadius: '0',
+                padding: '12px 16px',
+                fontSize: '14px',
               },
-            },
-            error: {
-              iconTheme: {
-                primary: '#ef4444',
-                secondary: '#faf7ff',
+              success: {
+                iconTheme: {
+                  primary: '#13daec',
+                  secondary: '#faf7ff',
+                },
               },
-            },
-          }}
-        />
+              error: {
+                iconTheme: {
+                  primary: '#ef4444',
+                  secondary: '#faf7ff',
+                },
+              },
+            }}
+          />
+        </StoreProvider>
       </body>
     </html>
   );

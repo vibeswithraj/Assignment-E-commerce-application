@@ -14,19 +14,19 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <Link
-                className="w-10 h-10 rounded-full text-zinc-400 hover:text-zinc-50 bg-zinc-900 flex items-center justify-center hover:bg-zinc-800"
+                className="w-10 h-10 rounded-full text-zinc-400 hover:text-primary bg-zinc-900 flex items-center justify-center hover:bg-zinc-800"
                 href="#"
               >
                 <Globe />
               </Link>
               <Link
-                className="w-10 h-10 rounded-full text-zinc-400 hover:text-zinc-50 bg-zinc-900 flex items-center justify-center hover:bg-zinc-800"
+                className="w-10 h-10 rounded-full text-zinc-400 hover:text-primary bg-zinc-900 flex items-center justify-center hover:bg-zinc-800"
                 href="#"
               >
                 <Instagram />
               </Link>
               <Link
-                className="w-10 h-10 rounded-full text-zinc-400 hover:text-zinc-50 bg-zinc-900 flex items-center justify-center hover:bg-zinc-800"
+                className="w-10 h-10 rounded-full text-zinc-400 hover:text-primary bg-zinc-900 flex items-center justify-center hover:bg-zinc-800"
                 href="#"
               >
                 <AtSign />
@@ -37,22 +37,22 @@ const Footer = () => {
             <h4 className="font-bold mb-8">Shop</h4>
             <ul className="space-y-4 text-zinc-400 text-sm">
               <li>
-                <Link className="hover:text-white transition-colors" href="#">
+                <Link className="hover:text-primary transition-colors" href="#">
                   New Arrivals
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-white transition-colors" href="#">
+                <Link className="hover:text-primary transition-colors" href="#">
                   Best Sellers
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-white transition-colors" href="#">
+                <Link className="hover:text-primary transition-colors" href="#">
                   Exclusive Drops
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-white transition-colors" href="#">
+                <Link className="hover:text-primary transition-colors" href="#">
                   Outlet
                 </Link>
               </li>
@@ -62,22 +62,22 @@ const Footer = () => {
             <h4 className="font-bold mb-8">Support</h4>
             <ul className="space-y-4 text-zinc-400 text-sm">
               <li>
-                <Link className="hover:text-white transition-colors" href="#">
+                <Link className="hover:text-primary transition-colors" href="#">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-white transition-colors" href="#">
+                <Link className="hover:text-primary transition-colors" href="#">
                   Shipping &amp; Returns
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-white transition-colors" href="#">
+                <Link className="hover:text-primary transition-colors" href="#">
                   Warranty Info
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-white transition-colors" href="#">
+                <Link className="hover:text-primary transition-colors" href="#">
                   FAQ
                 </Link>
               </li>
@@ -91,12 +91,12 @@ const Footer = () => {
             </p>
             <div className="relative">
               <input
-                className="w-full bg-zinc-900 border-none rounded-lg py-4 pl-4 pr-12 focus:ring-1 focus:ring-white text-white"
+                className="w-full bg-zinc-900 border-none rounded-lg py-4 pl-4 pr-12 focus:ring-1 focus:ring-primary focus:border-none focus:outline-none outline-none text-white"
                 placeholder="Email address"
                 type="email"
               />
-              <button className="absolute cursor-pointer bg-background right-2 top-2 w-10 h-10 hover:bg-background/50 rounded-md flex items-center justify-center">
-                <Send size={20} />
+              <button className="absolute group cursor-pointer bg-background right-2 top-2 w-10 h-10 hover:bg-background/50 rounded-md flex items-center justify-center">
+                <Send size={20} className="group-hover:text-primary" />
               </button>
             </div>
           </div>
@@ -104,13 +104,13 @@ const Footer = () => {
         <div className="border-t border-zinc-800 pt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-500 text-xs font-medium">
           <p>© 2024 LUXE Global Enterprise. All rights reserved.</p>
           <div className="flex gap-8">
-            <Link className="hover:text-zinc-300" href="#">
+            <Link className="hover:text-primary" href="#">
               Privacy Policy
             </Link>
-            <Link className="hover:text-zinc-300" href="#">
+            <Link className="hover:text-primary" href="#">
               Terms of Service
             </Link>
-            <Link className="hover:text-zinc-300" href="#">
+            <Link className="hover:text-primary" href="#">
               Cookie Settings
             </Link>
           </div>

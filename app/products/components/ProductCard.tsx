@@ -1,12 +1,16 @@
 import { Product } from '@/types';
 import Image from 'next/image';
 import { Star, StarHalf } from 'lucide-react';
+import Link from 'next/link';
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="rounded-xl shadow border border-zinc-800 flex flex-col justify-between">
+    <Link
+      href={`/products/${product.id}`}
+      className="rounded-xl shadow border border-zinc-800 flex flex-col justify-between"
+    >
       <div>
-        <div className="bg-zinc-900 rounded-t-xl flex items-center justify-center">
+        <div className="bg-zinc-300 rounded-t-xl flex items-center justify-center">
           <Image
             src={product.thumbnail}
             alt={product.title}
@@ -56,7 +60,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           Add to cart
         </button>
       </div>
-    </div>
+    </Link>
   );
 };
 
