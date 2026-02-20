@@ -7,8 +7,7 @@ import {
 import { buildQueryString } from '@/lib/utils';
 import { getAuthToken } from '@/lib/auth';
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_DUMMYJSON_BASE_URL || 'https://dummyjson.com';
+const BASE_URL = process.env.DUMMYJSON_BASE_URL || 'https://dummyjson.com';
 
 async function getAuthHeaders(): Promise<HeadersInit> {
   const token = await getAuthToken();

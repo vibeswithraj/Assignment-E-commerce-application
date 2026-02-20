@@ -24,15 +24,12 @@ export async function getCurrentUser(): Promise<User | null> {
   if (!token) return null;
 
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DUMMYJSON_BASE_URL}/auth/me`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        next: { revalidate: 60 },
+    const response = await fetch(`${process.env.DUMMYJSON_BASE_URL}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-    );
+      next: { revalidate: 60 },
+    });
 
     if (!response.ok) return null;
     return response.json();
