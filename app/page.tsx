@@ -1,6 +1,7 @@
 import Layout from '@/components/layout/Layout';
 import Image from 'next/image';
 import { Play } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -26,9 +27,12 @@ export default function Home() {
               sound as it was intended to be heard.
             </p>
             <div className="flex items-center gap-4 pt-4">
-              <button className="bg-primary hover:bg-primary/90 font-extrabold px-10 py-5 rounded-lg text-lg transition-transform active:scale-95 cursor-pointer">
+              <Link
+                href={'/products'}
+                className="bg-primary hover:bg-primary/90 font-extrabold px-10 py-5 rounded-lg text-lg transition-transform active:scale-95 cursor-pointer"
+              >
                 Shop The Collection
-              </button>
+              </Link>
               <button className="group flex items-center gap-2 px-6 py-5 rounded-lg font-bold text-slate-300 hover:text-white transition-colors cursor-pointer">
                 Watch Film{' '}
                 <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
@@ -42,7 +46,7 @@ export default function Home() {
             <Image
               width={400}
               height={400}
-              className="w-full h-auto drop-shadow-2xl"
+              className="w-full h-auto bg-transparent"
               alt="High-end professional over-ear silver headphones"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyBpCm4UfpAFZPpopaT7ESAJdYcYKf-8mmPuciGUJP_k0qekpME_zknCSsz6ki2yXDjDuw90SEMmxrhkfr2aLOUaWlptPneJgjPNQzNDiUfrhoGKgVQ4FOy33ebht_Sy1AJnyK7D60xgqY1rtcWzwA7qG0S5xizvDR6YjERiE61YirIXhruegrsq3F0GVEGrcThxfj7SpUmOcd-y9db-QVRVoDQocOt1aEvOCqULUVuycP4Gfuqw0OVZgMC_py8myzZ2fsGVBDd10"
             />

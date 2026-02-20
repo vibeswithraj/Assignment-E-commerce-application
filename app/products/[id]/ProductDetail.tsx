@@ -8,15 +8,11 @@ import {
   Check,
   Star,
   ArrowLeft,
-  Package,
-  Shield,
-  Truck,
-  RotateCcw,
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
-import { addToCart, updateQuantity, selectCartItems } from '@/store/cartSlice';
+import { addToCart, selectCartItems } from '@/store/cartSlice';
 import type { CartItem, Product } from '@/types';
 import { formatPrice, formatDiscount, cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
@@ -64,7 +60,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       <nav className="flex items-center gap-2 mb-8 text-sm font-body text-gray-400">
         <Link
           href="/products"
-          className="hover:text-ink transition-colors flex items-center gap-1"
+          className="hover:text-white transition-colors flex items-center gap-1"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           Products
@@ -72,22 +68,22 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         <span>/</span>
         <Link
           href={`/products?category=${product.category}`}
-          className="hover:text-ink transition-colors capitalize"
+          className="hover:text-white transition-colors capitalize"
         >
           {product.category}
         </Link>
         <span>/</span>
-        <span className="text-ink truncate max-w-48">{product.title}</span>
+        <span className="text-white truncate max-w-48">{product.title}</span>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
         <div className="space-y-3">
-          <div className="relative aspect-square bg-gray-50 overflow-hidden">
+          <div className="relative rounded-lg aspect-square bg-gray-50 overflow-hidden">
             <Image
               src={product.images[selectedImage] || product.thumbnail}
               alt={`${product.title} - Image ${selectedImage + 1}`}
               fill
-              className="object-cover"
+              className="object-cover rounded-lg"
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
             />
@@ -102,15 +98,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 flex items-center justify-center hover:bg-white transition-colors shadow-sm"
-                  aria-label="Previous image"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-zinc-900 flex items-center justify-center hover:bg-zinc-900/80 transition-colors shadow-sm rounded-lg cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 flex items-center justify-center hover:bg-white transition-colors shadow-sm"
-                  aria-label="Next image"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-zinc-900 flex items-center justify-center hover:bg-zinc-900/80 transition-colors shadow-sm rounded-lg cursor-pointer"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -125,13 +119,11 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
                   className={cn(
-                    'relative w-16 h-16 shrink-0 overflow-hidden transition-all',
+                    'relative w-16 h-16 shrink-0 overflow-hidden transition-all m-1 rounded-lg cursor-pointer',
                     selectedImage === idx
-                      ? 'ring-2 ring-ink'
-                      : 'ring-1 ring-gray-200 opacity-60 hover:opacity-100',
+                      ? 'ring-2 ring-primary'
+                      : 'ring-1 ring-zinc-400 opacity-60 hover:opacity-100',
                   )}
-                  aria-label={`View image ${idx + 1}`}
-                  aria-pressed={selectedImage === idx}
                 >
                   <Image
                     src={img}
@@ -148,10 +140,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
         <div className="space-y-6">
           <div>
-            <p className="text-xs text-gray-400 font-body tracking-widest uppercase mb-2">
+            <p className="text-xs text-zinc-400 font-body tracking-widest uppercase mb-2">
               {product.brand || product.category}
             </p>
-            <h1 className="font-display text-3xl lg:text-4xl text-ink font-light leading-tight mb-3">
+            <h1 className="font-manrope text-3xl lg:text-4xl text-white font-light leading-tight mb-3">
               {product.title}
             </h1>
 
@@ -163,35 +155,35 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     className={cn(
                       'w-4 h-4',
                       i < Math.round(product.rating)
-                        ? 'fill-brand-400 text-brand-400'
-                        : 'fill-gray-200 text-gray-200',
+                        ? 'fill-primary text-primary'
+                        : 'fill-zinc-200 text-zinc-200',
                     )}
                   />
                 ))}
               </div>
-              <span className="text-sm text-gray-500 font-body">
+              <span className="text-sm text-zinc-500 font-body">
                 {product.rating.toFixed(1)} ({product.reviews.length} reviews)
               </span>
             </div>
           </div>
 
-          <div className="flex items-baseline gap-3 pb-6 border-b border-gray-100">
-            <span className="font-display text-4xl text-ink font-semibold">
+          <div className="flex items-baseline gap-3 pb-6 border-b border-zinc-800">
+            <span className="font-manrope text-4xl text-ink font-semibold">
               {formatPrice(discountedPrice)}
             </span>
             {hasDiscount && (
-              <span className="text-lg text-gray-400 font-body line-through">
+              <span className="text-lg text-zinc-400 font-body line-through">
                 {formatPrice(product.price)}
               </span>
             )}
             {hasDiscount && (
-              <span className="text-sm text-brand-600 font-body font-medium">
+              <span className="text-sm text-primary/60 font-body font-medium">
                 Save {formatPrice(product.price - discountedPrice)}
               </span>
             )}
           </div>
 
-          <p className="font-body text-gray-600 leading-relaxed text-sm">
+          <p className="font-body text-zinc-500 leading-relaxed text-sm">
             {product.description}
           </p>
 
@@ -206,7 +198,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     : 'bg-red-400',
               )}
             />
-            <span className="font-body text-sm text-gray-600">
+            <span className="font-body text-sm text-zinc-600">
               {product.stock > 10
                 ? 'In Stock'
                 : product.stock > 0
@@ -217,23 +209,21 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
           {product.stock > 0 && (
             <div className="flex items-center gap-4">
-              <div className="flex items-center border border-gray-200">
+              <div className="flex items-center border border-zinc-500 rounded-lg">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-ink hover:bg-gray-50 transition-colors font-body text-lg"
-                  aria-label="Decrease quantity"
+                  className="w-10 h-10 flex items-center justify-center text-zinc-200 hover:bg-zinc-800 rounded-l-lg transition-colors font-body text-lg cursor-pointer"
                 >
                   −
                 </button>
-                <span className="w-12 h-10 flex items-center justify-center font-body text-sm font-medium border-x border-gray-200">
+                <span className="w-12 h-10 flex items-center justify-center font-body text-sm font-medium border-x border-zinc-500">
                   {quantity}
                 </span>
                 <button
                   onClick={() =>
                     setQuantity((q) => Math.min(product.stock, q + 1))
                   }
-                  className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-ink hover:bg-gray-50 transition-colors font-body text-lg"
-                  aria-label="Increase quantity"
+                  className="w-10 h-10 flex items-center justify-center text-zinc-200 hover:bg-zinc-800 rounded-r-lg transition-colors font-body text-lg cursor-pointer"
                 >
                   +
                 </button>
@@ -242,12 +232,11 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <button
                 onClick={handleAddToCart}
                 className={cn(
-                  'flex-1 h-12 flex items-center justify-center gap-2 font-body text-sm font-medium transition-colors',
+                  'flex-1 h-12 flex items-center justify-center gap-2 font-body text-sm font-medium rounded-lg cursor-pointer transition-colors',
                   isInCart
-                    ? 'bg-brand-500 text-white hover:bg-brand-600'
-                    : 'bg-ink text-cream hover:bg-brand-700',
+                    ? 'bg-primary/50 text-white hover:bg-primary'
+                    : 'bg-primary text-white hover:bg-primary/80',
                 )}
-                aria-label={`Add ${quantity} to cart`}
               >
                 {isInCart ? (
                   <Check className="w-4 h-4" />
@@ -267,25 +256,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               View Cart ({cartItem?.quantity} in cart)
             </Link>
           )}
-
-          <div className="grid grid-cols-2 gap-3 pt-2">
-            {[
-              { icon: Truck, label: product.shippingInformation },
-              { icon: RotateCcw, label: product.returnPolicy },
-              { icon: Shield, label: product.warrantyInformation },
-              { icon: Package, label: product.availabilityStatus },
-            ].map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="flex items-start gap-2 p-3 bg-gray-50"
-              >
-                <Icon className="w-3.5 h-3.5 text-gray-400 mt-0.5 shrink-0" />
-                <span className="font-body text-xs text-gray-500 leading-snug">
-                  {label}
-                </span>
-              </div>
-            ))}
-          </div>
 
           <p className="text-xs text-gray-400 font-mono">SKU: {product.sku}</p>
         </div>

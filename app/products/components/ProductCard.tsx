@@ -2,6 +2,7 @@ import { Product } from '@/types';
 import Image from 'next/image';
 import { Star, StarHalf } from 'lucide-react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
@@ -28,24 +29,18 @@ const ProductCard = ({ product }: { product: Product }) => {
               {product.title}
             </span>
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1">
-                <Star
-                  size={16}
-                  fill="oklch(83.7% 0.128 66.29)"
-                  strokeWidth={0}
-                />
-                <Star
-                  size={16}
-                  fill="oklch(83.7% 0.128 66.29)"
-                  strokeWidth={0}
-                />
-                <StarHalf
-                  size={16}
-                  fill="oklch(83.7% 0.128 66.29)"
-                  strokeWidth={0}
-                />
-                <Star size={16} className="text-orange-300" />
-                <Star size={16} className="text-orange-300" />
+              <div className="flex items-center">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className={cn(
+                      'w-4 h-4',
+                      i < Math.round(product.rating)
+                        ? 'fill-primary text-primary'
+                        : 'fill-zinc-200 text-zinc-200',
+                    )}
+                  />
+                ))}
               </div>
               <span className="text-sm text-zinc-500 font-mono font-medium">{`(${product.rating})`}</span>
             </div>
