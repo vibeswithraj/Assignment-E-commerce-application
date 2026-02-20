@@ -1,5 +1,10 @@
-import Link from 'next/link';
+import { Metadata } from 'next';
 import LoginForm from './LoginForm';
+
+export const metadata: Metadata = {
+  title: 'Sign In',
+  description: 'Sign in to your Luxe Commerce account',
+};
 
 const page = () => {
   return (
@@ -28,7 +33,7 @@ const page = () => {
               </svg>
             </div>
             <span className="text-white text-xl font-bold tracking-tight">
-              LUXE.
+              LUXE
             </span>
           </div>
           <div>
@@ -42,7 +47,7 @@ const page = () => {
             </p>
           </div>
           <div className="text-slate-400 text-sm">
-            © 2024 Premium E-commerce Platform. All rights reserved.
+            © 2026 Premium E-commerce Platform. All rights reserved.
           </div>
         </div>
       </div>
@@ -76,15 +81,6 @@ const page = () => {
             </p>
           </div>
           <LoginForm />
-          <p className="text-center text-slate-500 font-medium">
-            Don’t have an account?
-            <Link
-              className="text-primary font-bold hover:underline decoration-2 underline-offset-4 ml-1"
-              href="#"
-            >
-              Sign up
-            </Link>
-          </p>
           <span className="text-zinc-500">
             <strong>Demo credentials:</strong> emilys / emilyspass
           </span>

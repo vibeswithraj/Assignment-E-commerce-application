@@ -3,13 +3,10 @@ import Image from 'next/image';
 import { Play } from 'lucide-react';
 import Link from 'next/link';
 
-export default function Home() {
+const Home = () => {
   return (
     <Layout>
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#0a0f10]">
-        {/* <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[160px]"></div>
-        </div> */}
         <div className="max-w-[1440px] mx-auto px-8 w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="flex flex-col gap-8 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
@@ -42,7 +39,6 @@ export default function Home() {
             </div>
           </div>
           <div className="relative">
-            {/* <div className="absolute -inset-4 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div> */}
             <Image
               width={400}
               height={400}
@@ -55,4 +51,6 @@ export default function Home() {
       </section>
     </Layout>
   );
-}
+};
+
+export default Home;

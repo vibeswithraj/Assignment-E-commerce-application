@@ -102,7 +102,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-zinc-800 pt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-500 text-xs font-medium">
-          <p>© 2024 LUXE Global Enterprise. All rights reserved.</p>
+          <p>© 2026 LUXE Global Enterprise. All rights reserved.</p>
           <div className="flex gap-8">
             <Link className="hover:text-primary" href="#">
               Privacy Policy

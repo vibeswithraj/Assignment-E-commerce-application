@@ -2,24 +2,45 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { Loader2, ArrowRight } from 'lucide-react';
 import { AuthResponse } from '@/types';
+import z from 'zod';
 
-interface LoginFormData {
-  username: string;
-  password: string;
-}
+const loginSchema = z.object({
+  username: z.string().min(1, 'Username is required'),
+  password: z.string().min(1, 'Password is required'),
+});
+
+type LoginFormData = z.infer<typeof loginSchema>;
+type FormErrors = Partial<Record<keyof LoginFormData, string>>;
 
 const LoginForm = () => {
   const router = useRouter();
-
+  const searchParams = useSearchParams();
+  const [errors, setErrors] = useState<FormErrors>({});
   const [formData, setFormData] = useState<LoginFormData>({
     username: '',
     password: '',
   });
   const [isLoading, setIsLoading] = useState(false);
+  const callbackUrl = searchParams.get('callbackUrl') || '/products';
+
+  const validate = (): boolean => {
+    const result = loginSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: FormErrors = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof LoginFormData;
+        fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      return false;
+    }
+    setErrors({});
+    return true;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,24 +49,15 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.username || !formData.password) {
-      return toast.error('Username and Password is required!');
-    }
+    if (!validate()) return;
 
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_DUMMYJSON_BASE_URL}/auth/login`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            username: formData.username,
-            password: formData.password,
-            expiresInMins: 60,
-          }),
-        },
-      );
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
       const data: AuthResponse = await response.json();
 
@@ -54,7 +66,7 @@ const LoginForm = () => {
       }
 
       toast.success(`Welcome back, ${data.firstName}!`);
-      router.push('/products');
+      router.push(callbackUrl);
       router.refresh();
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Login failed';
@@ -82,6 +94,14 @@ const LoginForm = () => {
             placeholder="Enter your username"
             required
           />
+          {errors.username && (
+            <p
+              id="username-error"
+              className="mt-1.5 text-xs text-red-500 font-body"
+            >
+              {errors.username}
+            </p>
+          )}
         </div>
         <div className="space-y-1">
           <div className="space-y-2 flex flex-col">
@@ -99,6 +119,14 @@ const LoginForm = () => {
               placeholder="Enter your password"
               required
             />
+            {errors.password && (
+              <p
+                id="password-error"
+                className="mt-1.5 text-xs text-red-500 font-body"
+              >
+                {errors.password}
+              </p>
+            )}
             <div className="flex justify-end">
               <Link
                 className="text-sm font-semibold text-primary hover:underline decoration-2 underline-offset-4"

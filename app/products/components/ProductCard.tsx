@@ -1,10 +1,33 @@
+'use client';
+
 import { Product } from '@/types';
 import Image from 'next/image';
-import { Star, StarHalf } from 'lucide-react';
+import { Check, ShoppingBag, Star } from 'lucide-react';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import { cn, formatDiscount, truncateText } from '@/lib/utils';
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
+import { addToCart, selectIsInCart } from '@/store/cartSlice';
+import toast from 'react-hot-toast';
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const dispatch = useAppDispatch();
+  const isInCart = useAppSelector(selectIsInCart(product.id));
+
+  const discountedPrice = formatDiscount(
+    product.price,
+    product.discountPercentage,
+  );
+  const hasDiscount = product.discountPercentage > 0.5;
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(addToCart(product));
+    if (!isInCart) {
+      toast.success(`${truncateText(product.title, 30)} added to cart`);
+    }
+  };
+
   return (
     <Link
       href={`/products/${product.id}`}
@@ -51,8 +74,22 @@ const ProductCard = ({ product }: { product: Product }) => {
         </div>
       </div>
       <div className="px-3 mb-3">
-        <button className="w-full py-2 text-black/80 text-center font-semibold bg-primary rounded-lg hover:bg-primary/80 transition-colors ease-linear cursor-pointer">
-          Add to cart
+        <button
+          onClick={handleAddToCart}
+          disabled={product.stock === 0}
+          className="w-full py-2 text-black/80 font-semibold flex items-center justify-center gap-2 bg-primary rounded-lg hover:bg-primary/80 transition-colors ease-linear cursor-pointer"
+        >
+          {isInCart ? (
+            <>
+              <Check className="w-4 h-4" />
+              <span>In Cart</span>
+            </>
+          ) : (
+            <>
+              <ShoppingBag className="w-4 h-4" />
+              <span>Add to Cart</span>
+            </>
+          )}
         </button>
       </div>
     </Link>

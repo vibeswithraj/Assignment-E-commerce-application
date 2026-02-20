@@ -1,8 +1,13 @@
 import { cookies } from 'next/headers';
-import { User } from '@/types';
+import { AuthResponse, User } from '@/types';
 
 const COOKIE_NAME = 'auth_token';
 const REFRESH_COOKIE_NAME = 'refresh_token';
+
+export async function auth(data: AuthResponse) {
+  const cookieStore = await cookies();
+  setAuthCookies(cookieStore, data.accessToken, data.refreshToken);
+}
 
 export async function getAuthToken(): Promise<string | null> {
   const cookieStore = await cookies();
