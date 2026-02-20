@@ -1,14 +1,18 @@
 'use client';
 
-import { NavLinks } from '@/types/NavBar';
 import Link from 'next/link';
 import { User, ShoppingCart } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
+interface NavLinks {
+  name: string;
+  path: string;
+}
+
 const navLinks: NavLinks[] = [
   {
-    name: 'Shop',
-    path: '/shop',
+    name: 'Products',
+    path: '/products',
   },
   {
     name: 'Contact',
@@ -31,7 +35,7 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.path}
-              className={`${pathname == link.path ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
+              className={`${pathname == link.path ? 'text-primary' : 'text-zinc-400 hover:text-primary'}`}
             >
               {link.name}
             </Link>

@@ -13,7 +13,7 @@ export default function NotFound() {
         <p className="text-gray-500 font-body text-sm mb-8">
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
-        <Link href="/shop" className="btn-primary">
+        <Link href="/products" className="btn-primary">
           Back to Products
         </Link>
       </div>
