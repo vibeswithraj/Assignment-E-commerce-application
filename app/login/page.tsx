@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import LoginForm from './LoginForm';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Sign In',
@@ -80,7 +81,9 @@ const page = () => {
               Please enter your details to sign in.
             </p>
           </div>
-          <LoginForm />
+          <Suspense fallback={null}>
+            <LoginForm />
+          </Suspense>
           <span className="text-zinc-500">
             <strong>Demo credentials:</strong> emilys / emilyspass
           </span>

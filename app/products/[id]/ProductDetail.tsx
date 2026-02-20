@@ -98,13 +98,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-zinc-900 flex items-center justify-center hover:bg-zinc-900/80 transition-colors shadow-sm rounded-lg cursor-pointer"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-zinc-900 flex items-center justify-center hover:bg-zinc-800 transition-colors shadow-sm rounded-lg cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-zinc-900 flex items-center justify-center hover:bg-zinc-900/80 transition-colors shadow-sm rounded-lg cursor-pointer"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-zinc-900 flex items-center justify-center hover:bg-zinc-800 transition-colors shadow-sm rounded-lg cursor-pointer"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -251,7 +251,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           {isInCart && (
             <Link
               href="/cart"
-              className="btn-secondary w-full justify-center h-11 text-sm"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent text-ink border border-ink font-body font-medium rounded-none tracking-wide transition-all duration-200 hover:bg-ink hover:text-cream active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed w-full h-11 text-sm"
             >
               View Cart ({cartItem?.quantity} in cart)
             </Link>

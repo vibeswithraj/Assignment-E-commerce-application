@@ -38,7 +38,6 @@ const Navbar = ({ user }: NavbarProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const cartCount = useAppSelector(selectCartItemCount);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = async () => {
@@ -93,12 +92,17 @@ const Navbar = ({ user }: NavbarProps) => {
       <div className="flex items-center space-x-3">
         <Link
           href="/cart"
-          className="p-2.5 hover:bg-zinc-800 hover:text-primary rounded-full cursor-pointer"
+          className="p-2.5 relative hover:text-primary cursor-pointer"
         >
           <ShoppingCart size={18} />
+          {cartCount > 0 && (
+            <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-primary rounded-full text-black text-xs flex items-center justify-center font-body font-medium leading-none">
+              {cartCount > 99 ? '99+' : cartCount}
+            </span>
+          )}
         </Link>
         {user && (
-          <div className="hidden md:flex items-center gap-3 ml-2 pl-3 border-l border-white/10">
+          <div className="hidden md:flex items-center gap-3 ml-2 pl-3 border-l border-zinc-700">
             <div className="flex items-center gap-2">
               {user.image ? (
                 <Image
@@ -120,8 +124,7 @@ const Navbar = ({ user }: NavbarProps) => {
             <button
               onClick={handleLogout}
               disabled={isLoggingOut}
-              className="p-1.5 text-cream/40 hover:text-red-400 transition-colors"
-              aria-label="Sign out"
+              className="p-1.5 text-zinc-400 hover:text-red-400 transition-colors cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
             </button>

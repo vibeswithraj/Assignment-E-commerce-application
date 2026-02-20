@@ -7,7 +7,7 @@ interface ProductGridProps {
 
 const AllProducts = async ({ products }: ProductGridProps) => {
   return (
-    <section className="w-full h-full grid grid-cols-1 md:grid-cols-4 gap-3">
+    <section className="w-full h-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
       {products.map((product: Product) => (
         <ProductCard key={product.id} product={product} />
       ))}

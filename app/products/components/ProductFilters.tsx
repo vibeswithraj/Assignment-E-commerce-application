@@ -43,7 +43,7 @@ export default function ProductFilters({
     <div className="space-y-4 w-96 h-fit">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Filter className="w-3.5 h-3.5 text-gray-500" />
+          <Filter className="w-3.5 h-3.5 text-primary" />
           <span className="font-body text-sm font-medium text-ink tracking-wide">
             Filters
           </span>
@@ -51,7 +51,7 @@ export default function ProductFilters({
         {hasActiveFilters && (
           <button
             onClick={clearFilters}
-            className="flex items-center gap-1 text-xs text-primary-600 hover:text-primary-700 font-body transition-colors"
+            className="flex items-center gap-1 text-xs text-primary-600 hover:text-primary/70 font-body transition-colors cursor-pointer"
           >
             <X className="w-3 h-3" />
             Clear

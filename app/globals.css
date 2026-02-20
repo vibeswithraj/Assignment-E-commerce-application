@@ -35,9 +35,3 @@ body {
 .scroll-thin {
   scrollbar-width: thin;
 }
-
-/* @layer components {
-  .input-field {
-    @apply w-full px-4 py-3 bg-white border border-gray-200 text-ink placeholder:text-gray-400 font-body text-sm focus:outline-none focus:border-ink transition-colors duration-200 rounded-none;
-  }
-} */
